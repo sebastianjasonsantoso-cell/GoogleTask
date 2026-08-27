@@ -1,50 +1,50 @@
-# PRD — RapiTasks
+# PRD — Google Tasks
 
 ## Ringkasan
 
-RapiTasks adalah aplikasi daftar tugas ringan untuk membantu pengguna menyusun pekerjaan dan aktivitas pribadi secara cepat. Produk ini mengambil pola interaksi yang familiar dari Google Tasks, namun menggunakan tampilan mandiri berbahasa Indonesia.
+Google Tasks is a lightweight task-list app that helps users quickly organize work and personal activities. It follows familiar task-management patterns in a standalone English interface.
 
 ## Tujuan
 
-- Membuat, menyelesaikan, memberi bintang, dan menghapus tugas tanpa hambatan.
-- Mengelompokkan tugas ke daftar Hari ini, Pekerjaan, dan Pribadi.
-- Menyimpan perubahan pengguna secara lokal agar daftar tetap ada setelah halaman dibuka ulang.
+- Create, complete, star, and delete tasks with minimal friction.
+- Group tasks into Today, Work, and Personal lists.
+- Store changes locally so a list remains after reopening the page.
 
 ## Pengguna sasaran
 
-Profesional dan mahasiswa Indonesia yang ingin melihat prioritas harian tanpa fitur manajemen proyek yang rumit.
+Professionals and students who want to see daily priorities without a complex project-management system.
 
 ## Ruang lingkup versi 1
 
-1. Navigasi daftar Hari ini, Berbintang, Selesai, Pekerjaan, dan Pribadi.
-2. Input untuk menambahkan tugas pada daftar aktif.
-3. Status selesai/belum selesai serta bagian tugas selesai.
-4. Penanda bintang dan tampilan tugas berbintang.
-5. Hapus tugas serta hapus semua tugas dari menu opsi.
-6. Penyimpanan berbasis `localStorage` di browser.
-7. Tampilan responsif untuk desktop dan ponsel.
+1. Navigation for Today, Starred, Completed, Work, and Personal lists.
+2. An input to add a task to the active list.
+3. Complete/incomplete status and a completed-tasks section.
+4. Starred-task controls and view.
+5. Delete one task or all tasks from the options menu.
+6. Browser-based `localStorage` persistence.
+7. Responsive desktop and mobile layout.
 
 ## Cerita pengguna
 
-- Sebagai pengguna, saya ingin menambah tugas agar tidak lupa pekerjaan penting.
-- Sebagai pengguna, saya ingin mencentang tugas yang sudah dikerjakan agar progres terasa jelas.
-- Sebagai pengguna, saya ingin memberi bintang pada tugas penting agar mudah ditemukan.
-- Sebagai pengguna, saya ingin membuka kembali aplikasi dan melihat daftar terakhir saya.
+- As a user, I want to add a task so I do not forget important work.
+- As a user, I want to complete a task so my progress is clear.
+- As a user, I want to star an important task so I can find it quickly.
+- As a user, I want to reopen the app and see my last task list.
 
 ## Kriteria keberhasilan
 
-- Tugas baru langsung muncul pada daftar yang sedang dibuka.
-- Status tugas, bintang, dan penghapusan tersimpan setelah halaman dimuat ulang.
-- Antarmuka dapat digunakan pada layar selebar 320 px hingga desktop.
-- Kontrol utama memiliki label aksesibilitas untuk pembaca layar.
+- A new task appears instantly in the active list.
+- Task status, stars, and deletions persist after a page refresh.
+- The interface is usable from a 320 px screen through desktop.
+- Primary controls have accessible labels for screen readers.
 
 ## Di luar ruang lingkup versi 1
 
-- Akun dan sinkronisasi Google.
-- Kolaborasi atau berbagi daftar.
-- Pengingat notifikasi dan tanggal jatuh tempo nyata.
-- Subtugas, lampiran, dan integrasi kalender.
+- Google accounts and synchronization.
+- List sharing and collaboration.
+- Notifications and real due dates.
+- Subtasks, attachments, and calendar integration.
 
 ## Arah berikutnya
 
-Tambahkan pembuatan daftar kustom, tenggat waktu, pencarian, serta login dan sinkronisasi lintas perangkat.
+Add custom lists, due dates, search, and sign-in with cross-device sync.
