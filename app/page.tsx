@@ -1,6 +1,9 @@
 'use client';
 
 import { FormEvent, KeyboardEvent, useEffect, useMemo, useState } from 'react';
+import type { User } from '@supabase/supabase-js';
+import { AuthGate } from './auth-gate';
+import './auth.css';
 
 type Subtask = { id: string; title: string; done: boolean };
 type Task = { id: string; listId: string; title: string; notes: string; dueDate: string; dueTime?: string; allDay?: boolean; repeat?: string; starred: boolean; completedAt: string | null; order: number; subtasks: Subtask[] };
@@ -29,6 +32,10 @@ function Icon({ name, size = 20 }: { name: 'menu' | 'tasks' | 'plus' | 'all' | '
 }
 
 export default function Home() {
+  return <AuthGate>{(user, signOut) => <TasksWorkspace user={user} onSignOut={signOut} />}</AuthGate>;
+}
+
+function TasksWorkspace({ user, onSignOut }: { user: User; onSignOut: () => Promise<void> }) {
   const [lists, setLists] = useState<TaskList[]>(seedLists);
   const [tasks, setTasks] = useState<Task[]>(seedTasks);
   const [activeView, setActiveView] = useState('my-tasks');
@@ -40,13 +47,15 @@ export default function Home() {
   const [listEditorMode, setListEditorMode] = useState<ListEditorMode>(null);
   const [listTitle, setListTitle] = useState('');
   const [loaded, setLoaded] = useState(false);
+  const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+  const storageKey = `google-tasks-clone-v5-${user.id}`;
 
   useEffect(() => {
-    const cached = localStorage.getItem('google-tasks-clone-v4') ?? localStorage.getItem('google-tasks-clone-v3');
+    const cached = localStorage.getItem(storageKey) ?? localStorage.getItem('google-tasks-clone-v4') ?? localStorage.getItem('google-tasks-clone-v3');
     if (cached) try { const state = JSON.parse(cached) as { lists: TaskList[]; tasks: Task[]; activeView?: string; activeListId?: string }; if (state.lists?.length && state.tasks) { setLists(state.lists); setTasks(state.tasks); setActiveView(state.activeView ?? state.activeListId ?? state.lists[0].id); } } catch { /* use seed data */ }
     setLoaded(true);
-  }, []);
-  useEffect(() => { if (loaded) localStorage.setItem('google-tasks-clone-v4', JSON.stringify({ lists, tasks, activeView })); }, [lists, tasks, activeView, loaded]);
+  }, [storageKey]);
+  useEffect(() => { if (loaded) localStorage.setItem(storageKey, JSON.stringify({ lists, tasks, activeView })); }, [lists, tasks, activeView, loaded, storageKey]);
 
   const activeList = lists.find(list => list.id === activeView) ?? lists[0];
   const aggregateView = activeView === 'all' || activeView === 'starred';
@@ -71,7 +80,7 @@ export default function Home() {
   }, [activeView, tasks, lists]);
 
   return <main className="tasks-app">
-    <header className="topbar"><div className="brand"><button className="icon-button" aria-label="Main menu"><Icon name="menu" /></button><span className="brand-icon"><Icon name="check" size={22} /></span><span>Tasks</span></div><div className="topbar-actions"><button className="icon-button" aria-label="Support menu"><Icon name="help" /></button><button className="icon-button" aria-label="Google apps"><Icon name="apps" /></button><button className="account" aria-label="Google account">S</button></div></header>
+    <header className="topbar"><div className="brand"><button className="icon-button" aria-label="Main menu"><Icon name="menu" /></button><span className="brand-icon"><Icon name="check" size={22} /></span><span>Tasks</span></div><div className="topbar-actions"><button className="icon-button" aria-label="Support menu"><Icon name="help" /></button><button className="icon-button" aria-label="Google apps"><Icon name="apps" /></button><div className="account-wrap"><button className="account" aria-label={`Account: ${user.email ?? 'signed in'}`} aria-expanded={accountMenuOpen} onClick={() => setAccountMenuOpen(!accountMenuOpen)}>{(user.email?.[0] ?? 'U').toUpperCase()}</button>{accountMenuOpen && <div className="account-menu"><strong>{user.email}</strong><button onClick={() => void onSignOut()}>Sign out</button></div>}</div></div></header>
     <div className="workspace">
       <aside className="sidebar" aria-label="Task navigation">
         <button className="create-button" onClick={() => setEditingTask(createDraft())}><Icon name="plus" />Create</button>

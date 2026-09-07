@@ -1,0 +1,25 @@
+.account-wrap { position: relative; }
+.account-menu { position: absolute; z-index: 40; top: 42px; right: 0; display: grid; gap: 10px; min-width: 216px; padding: 14px; border: 1px solid #e0e3e7; border-radius: 10px; background: #fff; box-shadow: 0 3px 12px #3c40434d; }
+.account-menu strong { overflow: hidden; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+.account-menu button { height: 34px; border: 0; border-radius: 17px; background: #e8f0fe; color: #0b57d0; font-weight: 500; }
+.auth-page { display: grid; min-height: 100vh; place-items: center; padding: 24px; background: #f8f9fc; }
+.auth-card { width: min(100%, 420px); padding: 44px 40px 36px; border: 1px solid #dadce0; border-radius: 12px; background: #fff; box-shadow: 0 1px 3px #3c404326; text-align: center; }
+.auth-loading { color: #5f6368; }
+.auth-logo { display: grid; place-items: center; width: 48px; height: 48px; margin: 0 auto 12px; border-radius: 50%; background: linear-gradient(135deg, #4f8df7, #6f83ed); color: #fff; font-size: 27px; }
+.auth-product { margin: 0 0 18px; color: #5f6368; font-size: 15px; }
+.auth-card h1 { margin: 0; color: #202124; font-size: 25px; font-weight: 400; }
+.auth-intro { margin: 11px 0 28px; color: #5f6368; line-height: 20px; }
+.auth-form { display: grid; gap: 12px; text-align: left; }
+.auth-form label { color: #3c4043; font-size: 13px; font-weight: 500; }
+.auth-form input { height: 48px; padding: 0 13px; border: 1px solid #9aa0a6; border-radius: 4px; outline: 0; font-size: 16px; }
+.auth-form input:focus { border: 2px solid #0b57d0; }
+.otp-input { letter-spacing: 8px; text-align: center; font-size: 21px !important; }
+.auth-hint, .auth-status, .auth-error { margin: 0; font-size: 13px; line-height: 19px; }
+.auth-hint, .auth-status { color: #5f6368; }
+.auth-error { color: #b3261e; }
+.auth-primary, .auth-secondary { height: 42px; border: 0; border-radius: 21px; font-weight: 500; }
+.auth-primary { margin-top: 8px; background: #0b57d0; color: #fff; }
+.auth-primary:disabled { background: #cbd0d7; color: #80868b; }
+.auth-secondary, .auth-back { background: transparent; color: #0b57d0; }
+.auth-back { overflow: hidden; padding: 0; border: 0; text-align: left; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 520px) { .auth-card { padding: 36px 24px 30px; border: 0; box-shadow: none; } }
